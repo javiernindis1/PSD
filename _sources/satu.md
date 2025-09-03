@@ -1,6 +1,5 @@
 # Memahami Bisnis
 
-
 ## Latar belakang
 
 Pemerintah Indonesia telah mengembangkan berbagai aplikasi layanan publik berbasis digital yang tersedia di Google Play Store, seperti aplikasi e-government, administrasi kependudukan, kesehatan, pendidikan, dan pelayanan publik lainnya. Meskipun aplikasi tersebut bertujuan mempermudah masyarakat, kualitas aplikasi sering kali dipertanyakan oleh pengguna melalui ulasan (reviews) dan penilaian (ratings).
