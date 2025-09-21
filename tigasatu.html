@@ -57,8 +57,6 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tigasatu';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -385,18 +383,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#angle-based-outlier-detection-abod">Angle-Based Outlier Detection (ABOD)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-angle-based-outlier-detection-abod">Algoritma Angle-Based Outlier Detection (ABOD)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-yang-dibutuhkan">Import library yang dibutuhkan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-engine-dan-mengambil-dari-database">Membuat koneksi (engine) dan mengambil dari database</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengabungkan-2-database">Mengabungkan 2 database</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salinan-data">Salinan data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-abod">Model ABOD</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghapus-data-dengan-skor-outlier-tertinggi">Menghapus data dengan skor outlier tertinggi</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-yang-dibutuhkan">Import library yang dibutuhkan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-engine-dan-mengambil-dari-database">Membuat koneksi (engine) dan mengambil dari database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengabungkan-2-database">Mengabungkan 2 database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#salinan-data">Salinan data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-abod">Model ABOD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghapus-data-dengan-skor-outlier-tertinggi">Menghapus data dengan skor outlier tertinggi</a></li>
 </ul>
             </nav>
         </div>
@@ -410,38 +403,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="deteksi-outlier-abod">
 <h1>Deteksi Outlier ABOD<a class="headerlink" href="#deteksi-outlier-abod" title="Link to this heading">#</a></h1>
-<section id="angle-based-outlier-detection-abod">
-<h2>Angle-Based Outlier Detection (ABOD)<a class="headerlink" href="#angle-based-outlier-detection-abod" title="Link to this heading">#</a></h2>
-<p>Angle-Based Outlier Detection (ABOD) adalah pendekatan geometris untuk mengidentifikasi outlier dalam data berdimensi tinggi dengan menganalisis varians sudut yang dibentuk oleh vektor-vektor dari suatu titik ke tetangganya.</p>
-<p>Dalam satu himpunan data, titik-titik normal cenderung memiliki sudut-sudut yang serupa antara pasangan vektor yang menghubungkannya ke titik lain. Sebaliknya, outlier sering kali terletak di tepi dan membentuk rentang sudut yang sangat luas terhadap tetangganya — artinya, varians sudut mereka tinggi.</p>
-</section>
-<section id="algoritma-angle-based-outlier-detection-abod">
-<h2>Algoritma Angle-Based Outlier Detection (ABOD)<a class="headerlink" href="#algoritma-angle-based-outlier-detection-abod" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Untuk setiap titik ( p_i ) dalam dataset:</p>
-<ul class="simple">
-<li><p>Hitung semua vektor pasangan dari ( p_i ) ke titik lainnya:<br />
-$<span class="math notranslate nohighlight">\(
-\vec{v}_{ij} = p_j - p_i
-\)</span>$</p></li>
-<li><p>Untuk setiap pasangan vektor seperti <span class="math notranslate nohighlight">\(((\vec{v}_{ij}, \vec{v}_{ik})\)</span> , hitung sudut di antara keduanya menggunakan rumus hasil kali titik:<br />
-$<span class="math notranslate nohighlight">\(
-\cos(\theta_{ijk}) = \frac{\vec{v}_{ij} \cdot \vec{v}_{ik}}{\|\vec{v}_{ij}\| \cdot \|\vec{v}_{ik}\|}
-\)</span>$</p></li>
-<li><p>Hitung <strong>varians</strong> dari semua sudut tersebut untuk titik ( p_i ).</p></li>
-</ul>
-</li>
-<li><p>Skor outlier untuk titik <span class="math notranslate nohighlight">\( p_i \)</span> adalah varians sudut:<br />
-$<span class="math notranslate nohighlight">\(
-ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
-\)</span>$</p></li>
-<li><p>Titik-titik dengan <strong>varians sudut tinggi</strong> ditandai sebagai <strong>outlier</strong>.</p></li>
-</ol>
-</section>
-<section id="implementasi">
-<h2>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h2>
 <section id="import-library-yang-dibutuhkan">
-<h3>Import library yang dibutuhkan<a class="headerlink" href="#import-library-yang-dibutuhkan" title="Link to this heading">#</a></h3>
+<h2>Import library yang dibutuhkan<a class="headerlink" href="#import-library-yang-dibutuhkan" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -467,7 +430,7 @@ ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
 </div>
 </section>
 <section id="load-dataset">
-<h3>Load dataset<a class="headerlink" href="#load-dataset" title="Link to this heading">#</a></h3>
+<h2>Load dataset<a class="headerlink" href="#load-dataset" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">load_dotenv</span><span class="p">()</span>
@@ -498,7 +461,7 @@ ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
 </div>
 </section>
 <section id="membuat-koneksi-engine-dan-mengambil-dari-database">
-<h3>Membuat koneksi (engine) dan mengambil dari database<a class="headerlink" href="#membuat-koneksi-engine-dan-mengambil-dari-database" title="Link to this heading">#</a></h3>
+<h2>Membuat koneksi (engine) dan mengambil dari database<a class="headerlink" href="#membuat-koneksi-engine-dan-mengambil-dari-database" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Engine untuk PostgreSQL</span>
@@ -519,7 +482,7 @@ ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
 </div>
 </section>
 <section id="mengabungkan-2-database">
-<h3>Mengabungkan 2 database<a class="headerlink" href="#mengabungkan-2-database" title="Link to this heading">#</a></h3>
+<h2>Mengabungkan 2 database<a class="headerlink" href="#mengabungkan-2-database" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merge_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">mysql_df_iris</span><span class="p">,</span> <span class="n">postgres_df_iris</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
@@ -548,7 +511,7 @@ ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
 </div>
 </section>
 <section id="salinan-data">
-<h3>Salinan data<a class="headerlink" href="#salinan-data" title="Link to this heading">#</a></h3>
+<h2>Salinan data<a class="headerlink" href="#salinan-data" title="Link to this heading">#</a></h2>
 <p>Buat salinan data dari hasil penggabungan</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -559,7 +522,7 @@ ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
 </div>
 </section>
 <section id="model-abod">
-<h3>Model ABOD<a class="headerlink" href="#model-abod" title="Link to this heading">#</a></h3>
+<h2>Model ABOD<a class="headerlink" href="#model-abod" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -776,7 +739,7 @@ ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
 </div>
 </section>
 <section id="menghapus-data-dengan-skor-outlier-tertinggi">
-<h3>Menghapus data dengan skor outlier tertinggi<a class="headerlink" href="#menghapus-data-dengan-skor-outlier-tertinggi" title="Link to this heading">#</a></h3>
+<h2>Menghapus data dengan skor outlier tertinggi<a class="headerlink" href="#menghapus-data-dengan-skor-outlier-tertinggi" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Urutkan dataset_outliers berdasarkan skor outlier (descending)</span>
@@ -812,7 +775,6 @@ ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 
@@ -871,18 +833,13 @@ ABOD(p_i) = \mathrm{Var}(\theta_{ijk}) \quad \text{untuk semua } j, k \neq i
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#angle-based-outlier-detection-abod">Angle-Based Outlier Detection (ABOD)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-angle-based-outlier-detection-abod">Algoritma Angle-Based Outlier Detection (ABOD)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-yang-dibutuhkan">Import library yang dibutuhkan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-engine-dan-mengambil-dari-database">Membuat koneksi (engine) dan mengambil dari database</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengabungkan-2-database">Mengabungkan 2 database</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salinan-data">Salinan data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-abod">Model ABOD</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghapus-data-dengan-skor-outlier-tertinggi">Menghapus data dengan skor outlier tertinggi</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-yang-dibutuhkan">Import library yang dibutuhkan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-engine-dan-mengambil-dari-database">Membuat koneksi (engine) dan mengambil dari database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengabungkan-2-database">Mengabungkan 2 database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#salinan-data">Salinan data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-abod">Model ABOD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghapus-data-dengan-skor-outlier-tertinggi">Menghapus data dengan skor outlier tertinggi</a></li>
 </ul>
   </nav></div>
 
