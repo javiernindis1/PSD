@@ -8,3 +8,11 @@ chapters:
   - file: dua
     sections:
       - file: dua_satu
+  - file: uas
+    sections:
+      - file: business_understanding
+      - file: data_understanding
+      - file: Untitled0
+      - file: Untitled1
+      - file: Untitled2
+      - file: deployment
