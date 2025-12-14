@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'satu';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Eksplorasi Data" href="dua.html" />
+    <link rel="next" title="Data Understanding" href="dua.html" />
     <link rel="prev" title="Profile" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -181,16 +181,19 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Memahami Bisnis</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="dua.html">Eksplorasi Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="duasatu.html">Eksplorasi Data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="dua.html">Data Understanding</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="dua_satu.html">Eksplorasi Data</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="tiga.html">Data preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tigasatu.html">Deteksi Outlier ABOD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imbalanced.html">Imbalanced-Learn</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="uas.html">Ujian Akhir Semester (UAS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="business_understanding.html">Business Understanding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_understanding.html">Data Understanding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Untitled0.html">Preprocessing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Untitled1.html">Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Untitled2.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html">Deployment</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="empat.html">Time Series dataset for prediction</a></li>
 </ul>
 
     </div>
@@ -363,9 +366,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -381,15 +382,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar belakang</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-bisnis">Tujuan Bisnis</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -401,20 +393,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="memahami-bisnis">
 <h1>Memahami Bisnis<a class="headerlink" href="#memahami-bisnis" title="Link to this heading">#</a></h1>
-<section id="latar-belakang">
-<h2>Latar belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
-<p>Pemerintah Indonesia telah mengembangkan berbagai aplikasi layanan publik berbasis digital yang tersedia di Google Play Store, seperti aplikasi e-government, administrasi kependudukan, kesehatan, pendidikan, dan pelayanan publik lainnya. Meskipun aplikasi tersebut bertujuan mempermudah masyarakat, kualitas aplikasi sering kali dipertanyakan oleh pengguna melalui ulasan (reviews) dan penilaian (ratings).</p>
-<p>Dataset yang digunakan berisi ulasan pengguna terhadap aplikasi-aplikasi pemerintah di Play Store, termasuk informasi nama aplikasi, isi ulasan, rating, sentimen, dan tanggal ulasan. Data ini sangat berharga untuk mengevaluasi kualitas layanan digital pemerintah dari perspektif masyarakat.</p>
-</section>
-<section id="tujuan-bisnis">
-<h2>Tujuan Bisnis<a class="headerlink" href="#tujuan-bisnis" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Mengukur persepsi masyarakat terhadap aplikasi pemerintah melalui analisis ulasan dan rating.</p></li>
-<li><p>Mengidentifikasi kelemahan utama aplikasi (misalnya terkait bug, performa, UI/UX, atau ketidakpuasan layanan).</p></li>
-<li><p>Mengetahui tren kepuasan/ketidakpuasan pengguna dari waktu ke waktu.</p></li>
-<li><p>Menyediakan dasar rekomendasi perbaikan kepada instansi pemerintah terkait pengembangan aplikasi.</p></li>
-</ol>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -461,7 +439,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Eksplorasi Data</p>
+        <p class="prev-next-title">Data Understanding</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -471,22 +449,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar belakang</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-bisnis">Tujuan Bisnis</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
