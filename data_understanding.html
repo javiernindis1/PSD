@@ -188,6 +188,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="uas.html">Ujian Akhir Semester (UAS)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="business_understanding.html">Business Understanding</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Understanding</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="Untitled0.html">Preprocessing Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Untitled1.html">Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Untitled2.html">Evaluation</a></li>
@@ -389,13 +390,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">1. Deskripsi Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dan-format-data">2. Struktur dan Format Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset">3. Memuat Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas">4. Distribusi Kelas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series">5. Visualisasi Time-Series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-data-understanding">6. Kesimpulan Data Understanding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Understanding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Understanding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-dataset">1. Sumber Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asal-data-time-series">2. Asal Data Time-Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pembentukan-dataset">3. Proses Pembentukan Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">4. Deskripsi Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dan-format-data">5. Struktur dan Format Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset">6. Memuat Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas">7. Distribusi Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series">8. Visualisasi Time-Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-data-understanding">9. Kesimpulan Data Understanding</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -414,18 +423,67 @@ distribusi kelas, maupun karakteristik sinyal time-series.</p>
 <p>Pemahaman ini menjadi dasar penting
 untuk menentukan metode preprocessing, pemodelan,
 dan evaluasi yang tepat.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Data Understanding<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Tahap Data Understanding bertujuan untuk memahami karakteristik dataset
+yang digunakan dalam penelitian ini, meliputi sumber data, struktur data,
+jumlah sampel, distribusi kelas, serta karakteristik sinyal time-series.
+Pemahaman ini menjadi dasar penting dalam menentukan metode preprocessing,
+pemodelan, dan evaluasi yang tepat.</p>
+<hr class="docutils" />
+<section id="sumber-dataset">
+<h2>1. Sumber Dataset<a class="headerlink" href="#sumber-dataset" title="Link to this heading">#</a></h2>
+<p>Dataset yang digunakan pada penelitian ini adalah <strong>DucksAndGeese</strong>.
+Data suara burung pada dataset ini berasal dari situs <strong>Xeno-canto</strong>
+(<a class="reference external" href="http://www.xenocanto.com">www.xenocanto.com</a>), yaitu sebuah basis data internasional yang menyediakan
+rekaman suara burung dari berbagai spesies di seluruh dunia.</p>
+<p>Dataset ini disusun dan didonasikan oleh <strong>Michael Flynn</strong>,
+yang mengumpulkan serta mengkurasi rekaman suara burung dari Xeno-canto
+untuk keperluan penelitian klasifikasi time-series dan audio.</p>
+</section>
+<hr class="docutils" />
+<section id="asal-data-time-series">
+<h2>2. Asal Data Time-Series<a class="headerlink" href="#asal-data-time-series" title="Link to this heading">#</a></h2>
+<p>Data time-series pada dataset DucksAndGeese berasal dari
+<strong>rekaman audio suara burung asli</strong> yang direkam di lingkungan alami.
+Setiap rekaman audio kemudian direpresentasikan sebagai sinyal digital
+berupa deretan nilai amplitudo terhadap waktu.</p>
+<p>Dengan demikian, setiap sampel pada dataset merupakan
+<strong>satu sinyal time-series satu dimensi</strong>
+yang merepresentasikan gelombang suara burung dalam domain waktu.</p>
+</section>
+<hr class="docutils" />
+<section id="proses-pembentukan-dataset">
+<h2>3. Proses Pembentukan Dataset<a class="headerlink" href="#proses-pembentukan-dataset" title="Link to this heading">#</a></h2>
+<p>Sebelum dataset digunakan, dilakukan beberapa tahap pemrosesan awal
+oleh penyusun dataset, yaitu:</p>
+<ol class="arabic simple">
+<li><p>Rekaman audio yang memiliki variasi sample rate
+diseragamkan melalui proses <strong>downsampling ke 44.100 Hz</strong>
+menggunakan fungsi <code class="docutils literal notranslate"><span class="pre">resample</span></code> pada MATLAB.</p></li>
+<li><p>Seluruh sinyal audio dipotong (<em>truncation</em>)
+hingga memiliki panjang yang sama,
+yaitu sepanjang sinyal terpendek di antara seluruh rekaman.</p></li>
+<li><p>Hanya rekaman dengan kualitas <strong>kategori A dan B</strong>
+yang digunakan, sehingga kualitas audio relatif baik.</p></li>
+</ol>
+<p>Hasil dari proses ini adalah kumpulan sinyal time-series
+dengan panjang yang seragam dan siap digunakan
+untuk tugas klasifikasi.</p>
+</section>
+<hr class="docutils" />
 <section id="deskripsi-dataset">
-<h2>1. Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Link to this heading">#</a></h2>
-<p>Dataset yang digunakan pada penelitian ini adalah <strong>DucksAndGeese</strong>,
-yang berisi data <strong>time-series satu dimensi</strong> dari sinyal suara burung.</p>
-<p>Setiap sampel pada dataset memiliki:</p>
+<h2>4. Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Link to this heading">#</a></h2>
+<p>Karakteristik utama dataset DucksAndGeese adalah sebagai berikut:</p>
 <ul class="simple">
-<li><p>satu sinyal time-series dengan panjang yang sama</p></li>
-<li><p>satu label kelas yang merepresentasikan jenis burung</p></li>
+<li><p>Jumlah total sampel: <strong>100 sampel</strong></p></li>
+<li><p>Panjang time-series: <strong>236.784 titik data</strong></p></li>
+<li><p>Jumlah kelas: <strong>5 kelas burung</strong></p></li>
+<li><p>Jenis data: <strong>time-series satu dimensi</strong></p></li>
 </ul>
-<p>Dataset ini digunakan untuk tugas <strong>klasifikasi multikelas</strong>
-dengan tujuan mengidentifikasi jenis burung
-berdasarkan karakteristik sinyal suara.</p>
+<p>Setiap sampel merepresentasikan satu rekaman suara burung,
+dan setiap rekaman memiliki satu label kelas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -457,7 +515,7 @@ berdasarkan karakteristik sinyal suara.</p>
 </div>
 </section>
 <section id="struktur-dan-format-data">
-<h2>2. Struktur dan Format Data<a class="headerlink" href="#struktur-dan-format-data" title="Link to this heading">#</a></h2>
+<h2>5. Struktur dan Format Data<a class="headerlink" href="#struktur-dan-format-data" title="Link to this heading">#</a></h2>
 <p>Dataset disimpan dalam format <code class="docutils literal notranslate"><span class="pre">.ts</span></code>,
 yaitu format standar untuk <em>time-series classification</em>
 yang umum digunakan pada library <code class="docutils literal notranslate"><span class="pre">sktime</span></code>.</p>
@@ -480,7 +538,7 @@ dataset dikonversi ke dalam bentuk array NumPy.</p>
 </div>
 </section>
 <section id="memuat-dataset">
-<h2>3. Memuat Dataset<a class="headerlink" href="#memuat-dataset" title="Link to this heading">#</a></h2>
+<h2>6. Memuat Dataset<a class="headerlink" href="#memuat-dataset" title="Link to this heading">#</a></h2>
 <p>Dataset DucksAndGeese disediakan dalam dua bagian,
 yaitu data training dan data testing.</p>
 <p>Kedua dataset dimuat terlebih dahulu
@@ -513,7 +571,7 @@ Unique labels: [&#39;black-bellied_whistling_duck&#39; &#39;canadian_goose&#39; 
 </div>
 </section>
 <section id="distribusi-kelas">
-<h2>4. Distribusi Kelas<a class="headerlink" href="#distribusi-kelas" title="Link to this heading">#</a></h2>
+<h2>7. Distribusi Kelas<a class="headerlink" href="#distribusi-kelas" title="Link to this heading">#</a></h2>
 <p>Distribusi kelas dianalisis untuk mengetahui
 apakah dataset bersifat seimbang (<em>balanced</em>)
 atau tidak.</p>
@@ -550,7 +608,7 @@ Kondisi ini ideal untuk klasifikasi multikelas
 karena tidak menyebabkan bias prediksi pada kelas tertentu.</p>
 </section>
 <section id="visualisasi-time-series">
-<h2>5. Visualisasi Time-Series<a class="headerlink" href="#visualisasi-time-series" title="Link to this heading">#</a></h2>
+<h2>8. Visualisasi Time-Series<a class="headerlink" href="#visualisasi-time-series" title="Link to this heading">#</a></h2>
 <p>Visualisasi sinyal time-series dilakukan untuk:</p>
 <ul class="simple">
 <li><p>memahami pola umum sinyal suara burung,</p></li>
@@ -587,7 +645,7 @@ seperti MFCC, pada tahap preprocessing</p></li>
 </ul>
 </section>
 <section id="kesimpulan-data-understanding">
-<h2>6. Kesimpulan Data Understanding<a class="headerlink" href="#kesimpulan-data-understanding" title="Link to this heading">#</a></h2>
+<h2>9. Kesimpulan Data Understanding<a class="headerlink" href="#kesimpulan-data-understanding" title="Link to this heading">#</a></h2>
 <p>Kesimpulan tahap Data Understanding adalah sebagai berikut:</p>
 <ol class="arabic simple">
 <li><p>Dataset terdiri dari 100 sampel time-series satu dimensi</p></li>
@@ -664,13 +722,21 @@ seperti MFCC, pada tahap preprocessing</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">1. Deskripsi Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dan-format-data">2. Struktur dan Format Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset">3. Memuat Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas">4. Distribusi Kelas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series">5. Visualisasi Time-Series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-data-understanding">6. Kesimpulan Data Understanding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Understanding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Understanding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-dataset">1. Sumber Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asal-data-time-series">2. Asal Data Time-Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pembentukan-dataset">3. Proses Pembentukan Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">4. Deskripsi Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dan-format-data">5. Struktur dan Format Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset">6. Memuat Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas">7. Distribusi Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series">8. Visualisasi Time-Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-data-understanding">9. Kesimpulan Data Understanding</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
